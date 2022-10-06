@@ -2,6 +2,14 @@ const express = require('express');
 const app = express();
 const path = require('path') // modulo por defecto
 
+import sslRedirect from 'heroku-ssl-redirect';
+import express from 'express';
+
+
+// enable ssl redirect
+app.use(sslRedirect());
+
+
 // configuracion de la aplicacion
 // establecer el puerto
 app.set('port', 3000);
@@ -19,3 +27,6 @@ app.get('/', (req, res)=>{
 app.listen(app.get('port'), ()=>{
     console.log(`aplicaion corriendo en el puerto ${app.get('port')} `);
 })
+
+ 
+app.listen(process.env.PORT || 3000);
